@@ -190,5 +190,11 @@ Skilled in Full-Stack Development, AI/ML, and Agentic RAG Systems
 
 ---
 
+## Photos
+
+<img width="1826" height="645" alt="image" src="https://github.com/user-attachments/assets/7bf3a4da-c484-4e9b-be4f-3352e366b1be" />
+
+
+
 
 
