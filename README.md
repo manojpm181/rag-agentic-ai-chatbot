@@ -96,13 +96,13 @@ A safe template is provided as .env.example.
 
 This step:
 
-Loads the PDF
+- Loads the PDF
 
-Splits it into chunks
+- Splits it into chunks
 
-Generates embeddings
+- enerates embeddings
 
-Stores them in the vector database
+- Stores them in the vector database
 
 5️⃣ Run the FastAPI Backend
 
@@ -185,10 +185,11 @@ It showcases the practical application of **LangGraph** for building reliable, e
 ## 👤 Author
 
 **Manoj PM**  
-Final-year B.E. student in Computer Science & Engineering  
+ B.E. student in Computer Science & Engineering  Graduate
 Skilled in Full-Stack Development, AI/ML, and Agentic RAG Systems  
 
 📧 *Open to AI Engineer / Software Development opportunities*
 
 ---
+
 
