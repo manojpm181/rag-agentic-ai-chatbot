@@ -48,24 +48,24 @@ Final Answer + Retrieved Context + Confidence Score
 ---
 
 ## 📂 Project Structure
-rag-agentic-ai-chatbot/
-│
-├── app/
-│ ├── ingest.py # PDF ingestion & embedding
-│ ├── retriever.py # Vector DB loader & retriever
-│ ├── rag_graph.py # LangGraph-based RAG pipeline
-│ ├── api.py # FastAPI backend
-│ └── init.py
-│
-├── ui/
-│ └── streamlit_app.py # Streamlit chat UI
-│
-├── data/
-│ └── Agentic-AI.pdf # Source document
-│
-├── requirements.txt
-├── .env.example
-└── README.md
+    rag-agentic-ai-chatbot/
+    │
+    ├── app/
+    │ ├── ingest.py # PDF ingestion & embedding
+    │ ├── retriever.py # Vector DB loader & retriever
+    │ ├── rag_graph.py # LangGraph-based RAG pipeline
+    │ ├── api.py # FastAPI backend
+    │ └── init.py
+    │
+    ├── ui/
+    │ └── streamlit_app.py # Streamlit chat UI
+    │
+    ├── data/
+    │ └── Agentic-AI.pdf # Source document
+    │
+    ├── requirements.txt
+    ├── .env.example
+    └── README.md
 
 
 ---
@@ -74,25 +74,25 @@ rag-agentic-ai-chatbot/
 
 ### 1️⃣ Clone the Repository
 
-```bash
-git clone <your-repo-url>
-cd rag-agentic-ai-chatbot
+    git clone <your-repo-url>
+    cd rag-agentic-ai-chatbot
 
 2️⃣ Install Dependencies
-pip install -r requirements.txt
+
+    pip install -r requirements.txt
 
 3️⃣ Configure Environment Variables
 
 Create a .env file (do NOT commit this):
 
-OPENAI_API_KEY=your_openai_api_key
+    OPENAI_API_KEY=your_openai_api_key
 
 
 A safe template is provided as .env.example.
 
 4️⃣ Ingest the PDF
-python app/ingest.py
 
+    python app/ingest.py
 
 This step:
 
@@ -105,86 +105,90 @@ Generates embeddings
 Stores them in the vector database
 
 5️⃣ Run the FastAPI Backend
-uvicorn app.api:app --reload
 
+    uvicorn app.api:app --reload
 
 📘 Swagger UI available at:
 
-http://127.0.0.1:8000/docs
+    http://127.0.0.1:8000/docs
 
 6️⃣ Run the Streamlit UI
-streamlit run ui/streamlit_app.py
+
+    streamlit run ui/streamlit_app.py
+
+https://manojpm181-rag-agentic-ai-chatbot-uistreamlit-app-ij4aln.streamlit.app/
 
 🧪 Sample Queries
 
-What is Agentic AI?
+    What is Agentic AI?
+    
+    How does Agentic AI differ from traditional LLM pipelines?
+    
+    What are the core components of an agentic system?
+    
+    Why are tools and planning important in agentic architectures?
+    
+    How does autonomy play a role in agent-based AI?
+    
+    What limitations of LLMs does Agentic AI aim to address?
 
-How does Agentic AI differ from traditional LLM pipelines?
+## 🧠 Design Decisions
 
-What are the core components of an agentic system?
+- **LangGraph-based State Machine**  
+  LangGraph is used to model the RAG workflow as a state machine, enabling a clear reasoning flow, modular node design, and easy future extensibility.
 
-Why are tools and planning important in agentic architectures?
+- **Grounding Check for Hallucination Prevention**  
+  A dedicated grounding check node ensures that answers are generated only when relevant context is retrieved, reducing hallucinations.
 
-How does autonomy play a role in agent-based AI?
+- **ChromaDB as Vector Store**  
+  ChromaDB was selected for its simplicity, reliability, and ease of use during local development and experimentation.
 
-What limitations of LLMs does Agentic AI aim to address?
+- **Chunking Strategy**  
+  Documents are chunked into **500-token segments with 100-token overlap** to maintain semantic coherence while improving retrieval accuracy.
 
-🧠 Design Decisions
+- **Confidence Scoring Mechanism**  
+  A confidence score is computed based on retrieval strength, providing interpretability and transparency for each generated response.
 
-LangGraph models the RAG workflow as a state machine, enabling clear reasoning flow and extensibility.
 
-A grounding check node prevents hallucinated answers when no relevant context is retrieved.
+## 🚫 Limitations & Future Improvements
 
-ChromaDB was chosen for its simplicity and reliability during local development.
-
-Chunking strategy (500 tokens with 100 overlap) balances semantic coherence and retrieval accuracy.
-
-Confidence score is derived from retrieval strength for interpretability.
-
-🚫 Limitations & Future Improvements
-
-Improve confidence scoring using average embedding similarity
-
-Add streaming responses and inline citations
-
-Support multiple PDFs and document collections
-
-Add authentication and usage logging
-
-Deploy using Docker or Streamlit Cloud
-
-✅ Conclusion
-
-This project demonstrates a production-oriented Agentic RAG system with a strong focus on:
-
-Correctness
-
-Explainability
-
-Modular, agent-based design
-
-It showcases practical use of LangGraph for building reliable and extensible AI pipelines.
-
-⚠️ Notes
-
-venv/ and .env are intentionally excluded from version control
-
-Environment variables must be set via .env (local) or platform secrets (deployment)
-
+- Enhance confidence scoring using average embedding similarity metrics
+- Add streaming responses for real-time answer generation
+- Include inline citations for better traceability and trust
+- Support multiple PDFs and document collections
+- Add authentication and usage logging
+- Deploy using Docker or Streamlit Cloud for scalable production use
 
 ---
 
-### ✅ This README is:
-- GitHub-ready
-- Interview-friendly
-- Deployment-safe
-- Cleanly structured
-- Copy-paste usable
+## ✅ Conclusion
 
-If you want next, I can:
-- ⭐ Optimize this README for **ATS & recruiters**
-- 🚀 Add **deployment section (Streamlit Cloud / HF Spaces)**
-- 🐳 Create a **Dockerfile**
-- 🧪 Add **evaluation metrics section**
+This project demonstrates a **production-oriented Agentic RAG system** with a strong emphasis on:
 
-Just tell me 👍
+- **Correctness** through grounding and retrieval checks  
+- **Explainability** via retrieved context and confidence scoring  
+- **Modular, agent-based design** using LangGraph  
+
+It showcases the practical application of **LangGraph** for building reliable, extensible, and interpretable AI pipelines.
+
+---
+
+## ⚠️ Notes
+
+- `venv/` and `.env` are intentionally excluded from version control for security and portability
+- Environment variables must be configured via:
+  - `.env` file for local development
+  - Platform-provided secrets for deployment environments
+
+---
+
+## 👤 Author
+
+**Manoj PM**  
+Final-year B.E. student in Computer Science & Engineering  
+Skilled in Full-Stack Development, AI/ML, and Agentic RAG Systems  
+
+📧 *Open to AI Engineer / Software Development opportunities*
+
+---
+
