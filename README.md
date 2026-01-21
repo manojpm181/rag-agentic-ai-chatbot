@@ -17,20 +17,18 @@ This project was developed as part of an **AI Engineer Intern interview task** f
 - 🌐 Accessible via **FastAPI API** and **Streamlit UI**
 
 ---
-
 ## 🏗️ Architecture Overview
-
-User Question
-↓
-LangGraph State Machine
-↓
-[ Retrieve Node ]
-↓
-[ Grounding Check Node ]
-↓
-[ Answer Generator Node ]
-↓
-Final Answer + Retrieved Context + Confidence Score
+    User Question
+            ↓
+    LangGraph State Machine
+            ↓
+    [ Retrieve Node ]
+            ↓
+    [ Grounding Check Node ]
+            ↓
+    [ Answer Generator Node ]
+            ↓
+    Final Answer + Retrieved Context + Confidence Score
 
 
 ---
@@ -191,5 +189,6 @@ Skilled in Full-Stack Development, AI/ML, and Agentic RAG Systems
 📧 *Open to AI Engineer / Software Development opportunities*
 
 ---
+
 
 
