@@ -1,66 +1,67 @@
 # 🤖 Agentic AI RAG Chatbot (LangGraph-based)
 
-A Retrieval-Augmented Generation (RAG) chatbot built using **LangGraph**, **LangChain**, and **Vector Embeddings**, designed to answer questions **strictly grounded** in the *Agentic AI eBook*.
+A **Retrieval-Augmented Generation (RAG)** chatbot built using **LangGraph**, **LangChain**, and **Vector Embeddings**, designed to answer questions **strictly grounded** in the *Agentic AI eBook*.
 
-This project was built as part of the **AI Engineer Intern interview task** for Appening Infotech.
+This project was developed as part of an **AI Engineer Intern interview task** for **Appening Infotech**.
 
 ---
 
 ## 📌 Key Features
 
 - 📖 Ingests and indexes the *Agentic AI eBook* (PDF)
-- 🔍 Retrieves relevant content using vector similarity search
+- 🔍 Semantic retrieval using vector similarity search
 - 🧠 Agentic RAG pipeline implemented with **LangGraph**
 - 🚫 Hallucination prevention via grounding checks
 - 📊 Confidence score based on retrieval strength
-- 🔎 Shows retrieved context for transparency
-- 🌐 Exposed via **FastAPI** and **Streamlit UI**
+- 🔎 Displays retrieved context for transparency
+- 🌐 Accessible via **FastAPI API** and **Streamlit UI**
 
 ---
 
 ## 🏗️ Architecture Overview
+
 User Question
-        ↓
+↓
 LangGraph State Machine
-        ↓
+↓
 [ Retrieve Node ]
-        ↓
+↓
 [ Grounding Check Node ]
-        ↓
+↓
 [ Answer Generator Node ]
-        ↓
-Final Answer + Context + Confidence
+↓
+Final Answer + Retrieved Context + Confidence Score
 
 
 ---
 
 ## ⚙️ Tech Stack
 
-- Python 3.10+
-- LangChain
-- LangGraph
-- ChromaDB (Vector Store)
-- OpenAI Embeddings & Chat Models
-- FastAPI
-- Streamlit
+- **Python** 3.10+
+- **LangChain**
+- **LangGraph**
+- **ChromaDB** (Vector Store)
+- **OpenAI Embeddings & Chat Models**
+- **FastAPI**
+- **Streamlit**
 
 ---
 
 ## 📂 Project Structure
-
 rag-agentic-ai-chatbot/
 │
 ├── app/
 │ ├── ingest.py # PDF ingestion & embedding
 │ ├── retriever.py # Vector DB loader & retriever
-│ ├── rag_graph.py # LangGraph RAG pipeline
+│ ├── rag_graph.py # LangGraph-based RAG pipeline
 │ ├── api.py # FastAPI backend
+│ └── init.py
 │
 ├── ui/
 │ └── streamlit_app.py # Streamlit chat UI
 │
 ├── data/
-│ └── agentic_ai.pdf
+│ └── Agentic-AI.pdf # Source document
 │
 ├── requirements.txt
 ├── .env.example
@@ -72,6 +73,7 @@ rag-agentic-ai-chatbot/
 ## 🚀 Setup Instructions
 
 ### 1️⃣ Clone the Repository
+
 ```bash
 git clone <your-repo-url>
 cd rag-agentic-ai-chatbot
@@ -79,24 +81,38 @@ cd rag-agentic-ai-chatbot
 2️⃣ Install Dependencies
 pip install -r requirements.txt
 
-3️⃣ Set Environment Variables
+3️⃣ Configure Environment Variables
 
-Create a .env file:
+Create a .env file (do NOT commit this):
 
-OPENAI_API_KEY=your_openai_key
+OPENAI_API_KEY=your_openai_api_key
+
+
+A safe template is provided as .env.example.
 
 4️⃣ Ingest the PDF
 python app/ingest.py
 
-5️⃣ Run the API
+
+This step:
+
+Loads the PDF
+
+Splits it into chunks
+
+Generates embeddings
+
+Stores them in the vector database
+
+5️⃣ Run the FastAPI Backend
 uvicorn app.api:app --reload
 
 
-Swagger UI available at:
+📘 Swagger UI available at:
 
 http://127.0.0.1:8000/docs
 
-6️⃣ Run the UI
+6️⃣ Run the Streamlit UI
 streamlit run ui/streamlit_app.py
 
 🧪 Sample Queries
@@ -115,11 +131,11 @@ What limitations of LLMs does Agentic AI aim to address?
 
 🧠 Design Decisions
 
-LangGraph was used to model the RAG pipeline as a state machine, enabling clear reasoning flow and future extensibility.
+LangGraph models the RAG workflow as a state machine, enabling clear reasoning flow and extensibility.
 
-A grounding check node prevents hallucinations when no relevant context is retrieved.
+A grounding check node prevents hallucinated answers when no relevant context is retrieved.
 
-ChromaDB was selected for its simplicity and reliability during local development.
+ChromaDB was chosen for its simplicity and reliability during local development.
 
 Chunking strategy (500 tokens with 100 overlap) balances semantic coherence and retrieval accuracy.
 
@@ -127,14 +143,48 @@ Confidence score is derived from retrieval strength for interpretability.
 
 🚫 Limitations & Future Improvements
 
-Confidence scoring can be enhanced using embedding similarity averages.
+Improve confidence scoring using average embedding similarity
 
-Streaming responses and citations can be added.
+Add streaming responses and inline citations
 
-Support for multiple documents and PDFs.
+Support multiple PDFs and document collections
+
+Add authentication and usage logging
+
+Deploy using Docker or Streamlit Cloud
 
 ✅ Conclusion
 
-This project demonstrates a production-oriented RAG system with a focus on correctness, explainability, and agentic design principles.
-#
+This project demonstrates a production-oriented Agentic RAG system with a strong focus on:
 
+Correctness
+
+Explainability
+
+Modular, agent-based design
+
+It showcases practical use of LangGraph for building reliable and extensible AI pipelines.
+
+⚠️ Notes
+
+venv/ and .env are intentionally excluded from version control
+
+Environment variables must be set via .env (local) or platform secrets (deployment)
+
+
+---
+
+### ✅ This README is:
+- GitHub-ready
+- Interview-friendly
+- Deployment-safe
+- Cleanly structured
+- Copy-paste usable
+
+If you want next, I can:
+- ⭐ Optimize this README for **ATS & recruiters**
+- 🚀 Add **deployment section (Streamlit Cloud / HF Spaces)**
+- 🐳 Create a **Dockerfile**
+- 🧪 Add **evaluation metrics section**
+
+Just tell me 👍
